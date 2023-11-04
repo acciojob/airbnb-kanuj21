@@ -4,12 +4,13 @@ import com.driver.model.Booking;
 import com.driver.model.Facility;
 import com.driver.model.Hotel;
 import com.driver.model.User;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
 
 public class hotelManagementService {
-    static HotelManagementRepository hotelManagementRepository = new HotelManagementRepository();
+    HotelManagementRepository hotelManagementRepository = new HotelManagementRepository();
 
-    public static String addHotel(Hotel hotel) {
+    public String addHotel(Hotel hotel) {
         if(hotel == null || hotel.getHotelName() == null) {
             return "FAILURE";
         }
@@ -27,13 +28,13 @@ public class hotelManagementService {
 //        return user.getaadharCardNo();
 //    }
 
-    public static Integer addUser(User user) {
+    public Integer addUser(User user) {
         hotelManagementRepository.addUser(user);
         return user.getaadharCardNo();
 
     }
 
-    public static String getHotelWithMostFacilities(){
+    public String getHotelWithMostFacilities(){
         HashMap<String, Hotel> hotelDb = hotelManagementRepository.getHotelDb();
         String hotelNameWithMaxFacilities = "";
         int maxFacilties = 0;
@@ -56,7 +57,7 @@ public class hotelManagementService {
         return hotelNameWithMaxFacilities;
     }
 
-    public static int bookARoom(Booking booking) {
+    public int bookARoom(Booking booking) {
         hotelManagementRepository.addBooking(booking);
 
         Hotel hotel = hotelManagementRepository.getHotelDb().get(booking.getHotelName());
@@ -75,11 +76,11 @@ public class hotelManagementService {
         return totalAmount;
     }
 
-    public static int getBookings(Integer aadharCard) {
+    public int getBookings(Integer aadharCard) {
         return hotelManagementRepository.getNoOfBookingsByUser().get(aadharCard);
     }
 
-    public static Hotel updateFacilities(List<Facility> newFacilities, String hotelName) {
+    public Hotel updateFacilities(List<Facility> newFacilities, String hotelName) {
         Hotel hotel = hotelManagementRepository.getHotelDb().get(hotelName);
 
         List<Facility> hotelFacility = hotel.getFacilities();
