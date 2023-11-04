@@ -8,9 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class hotelManagementService {
-    HotelManagementRepository hotelManagementRepository = new HotelManagementRepository();
+    static HotelManagementRepository hotelManagementRepository = new HotelManagementRepository();
 
-    public String addHotel(Hotel hotel) {
+    public static String addHotel(Hotel hotel) {
         if(hotel == null || hotel.getHotelName() == null) {
             return "FAILURE";
         }
@@ -23,18 +23,13 @@ public class hotelManagementService {
         return "SUCCESS";
     }
 
-//    public Integer addUser(User user) {
-//        hotelManagementRepository.addUser(user);
-//        return user.getaadharCardNo();
-//    }
-
-    public Integer addUser(User user) {
+    public static Integer addUser(User user) {
         hotelManagementRepository.addUser(user);
         return user.getaadharCardNo();
 
     }
 
-    public String getHotelWithMostFacilities(){
+    public static String getHotelWithMostFacilities(){
         HashMap<String, Hotel> hotelDb = hotelManagementRepository.getHotelDb();
         String hotelNameWithMaxFacilities = "";
         int maxFacilties = 0;
@@ -57,7 +52,7 @@ public class hotelManagementService {
         return hotelNameWithMaxFacilities;
     }
 
-    public int bookARoom(Booking booking) {
+    public static int bookARoom(Booking booking) {
         hotelManagementRepository.addBooking(booking);
 
         Hotel hotel = hotelManagementRepository.getHotelDb().get(booking.getHotelName());
@@ -76,11 +71,11 @@ public class hotelManagementService {
         return totalAmount;
     }
 
-    public int getBookings(Integer aadharCard) {
+    public static int getBookings(Integer aadharCard) {
         return hotelManagementRepository.getNoOfBookingsByUser().get(aadharCard);
     }
 
-    public Hotel updateFacilities(List<Facility> newFacilities, String hotelName) {
+    public static Hotel updateFacilities(List<Facility> newFacilities, String hotelName) {
         Hotel hotel = hotelManagementRepository.getHotelDb().get(hotelName);
 
         List<Facility> hotelFacility = hotel.getFacilities();
@@ -97,4 +92,5 @@ public class hotelManagementService {
 
         return hotel;
     }
+
 }
