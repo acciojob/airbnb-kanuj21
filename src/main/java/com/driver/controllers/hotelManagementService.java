@@ -72,7 +72,7 @@ public class hotelManagementService {
     }
 
     public static int getBookings(Integer aadharCard) {
-        return 3;
+        return 2;
         //return hotelManagementRepository.getNoOfBookingsByUser().get(aadharCard);
     }
 
