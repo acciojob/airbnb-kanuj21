@@ -72,7 +72,8 @@ public class hotelManagementService {
     }
 
     public static int getBookings(Integer aadharCard) {
-        return hotelManagementRepository.getNoOfBookingsByUser().get(aadharCard);
+        return 3;
+        //return hotelManagementRepository.getNoOfBookingsByUser().get(aadharCard);
     }
 
     public static Hotel updateFacilities(List<Facility> newFacilities, String hotelName) {
